@@ -1,7 +1,6 @@
 package com.hospital.hospitalmanagement.doctor;
 
 import com.hospital.hospitalmanagement.department.Department;
-import com.hospital.hospitalmanagement.department.DepartmentTypes;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -41,7 +40,7 @@ public class Doctor implements UserDetails {
     private String email;
     private String password;
     @Enumerated(EnumType.STRING)
-    private DoctorRole doctorRole;
+    private DoctorRole role;
     private boolean departmentChangeEligible = false;
     private LocalDate startingDepartmentDate;
     private Boolean locked = false;

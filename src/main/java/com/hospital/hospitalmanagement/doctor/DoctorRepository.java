@@ -21,11 +21,5 @@ public interface DoctorRepository extends JpaRepository<Doctor, Long> {
     int enableDoctor(String email);
 
 
-    @Transactional
-    @Modifying
-    @Query(
-           "UPDATE Doctor a SET a."
-    )
-
 
 }
