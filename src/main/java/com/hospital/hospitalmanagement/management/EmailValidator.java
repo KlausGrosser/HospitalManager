@@ -1,4 +1,4 @@
-package com.hospital.hospitalmanagement.registration;
+package com.hospital.hospitalmanagement.management;
 
 import java.util.function.Predicate;
 import java.util.regex.Matcher;
