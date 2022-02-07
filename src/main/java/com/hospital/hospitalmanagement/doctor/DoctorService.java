@@ -10,6 +10,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -23,7 +24,7 @@ public class DoctorService implements UserDetailsService {
     private final ConfirmationTokenService confirmationTokenService;
 
 
-    public String signUpUser(Doctor doctor) {
+    public String newDoctor(Doctor doctor) {
         boolean userExists = doctorRepository
                 .findByEmail(doctor.getEmail())
                 .isPresent();
@@ -48,6 +49,14 @@ public class DoctorService implements UserDetailsService {
         confirmationTokenService.saveConfirmationToken(confirmationToken);
 
         return token;
+    }
+
+    public String updateDoctor(Doctor doctor){
+
+    }
+
+    public boolean findDoctorByEmail(String email){
+        return doctorRepository.findByEmail(email).isPresent();
     }
 
     public void enableDoctor(String email) {
