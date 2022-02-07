@@ -1,4 +1,4 @@
-package com.hospital.hospitalmanagement.registration;
+package com.hospital.hospitalmanagement.management;
 
 import java.time.LocalDateTime;
 import javax.transaction.Transactional;
@@ -6,8 +6,8 @@ import javax.transaction.Transactional;
 import com.hospital.hospitalmanagement.doctor.Doctor;
 import com.hospital.hospitalmanagement.doctor.DoctorService;
 import com.hospital.hospitalmanagement.email.EmailSender;
-import com.hospital.hospitalmanagement.registration.token.ConfirmationToken;
-import com.hospital.hospitalmanagement.registration.token.ConfirmationTokenService;
+import com.hospital.hospitalmanagement.management.token.ConfirmationToken;
+import com.hospital.hospitalmanagement.management.token.ConfirmationTokenService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -67,8 +67,8 @@ public class RegistrationService {
         // set the confirmed time of the token to now
         confirmationTokenService.setConfirmedAt(token);
         // set the user that holds this token to enabled
-        doctorService.enableAppUser(
-                confirmationToken.getAppUser().getEmail()
+        doctorService.enableDoctor(
+                confirmationToken.getDoctor().getEmail()
         );
         // return "confirmed"
         return "confirmed";

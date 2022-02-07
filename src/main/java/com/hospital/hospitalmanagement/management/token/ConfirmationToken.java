@@ -1,4 +1,4 @@
-package com.hospital.hospitalmanagement.registration.token;
+package com.hospital.hospitalmanagement.management.token;
 
 import java.time.LocalDateTime;
 import javax.persistence.Column;
@@ -44,7 +44,7 @@ public class ConfirmationToken {
     private LocalDateTime confirmedAt;
     @ManyToOne
     @JoinColumn(nullable = false,
-            name = "app_user_id"
+            name = "doctor_id"
     )
     private Doctor doctor;
 

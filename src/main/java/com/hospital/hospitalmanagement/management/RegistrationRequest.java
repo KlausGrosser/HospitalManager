@@ -1,4 +1,4 @@
-package com.hospital.hospitalmanagement.registration;
+package com.hospital.hospitalmanagement.management;
 
 
 import lombok.AllArgsConstructor;

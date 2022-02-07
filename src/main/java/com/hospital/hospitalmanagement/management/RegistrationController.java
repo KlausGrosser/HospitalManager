@@ -1,7 +1,6 @@
-package com.hospital.hospitalmanagement.registration;
+package com.hospital.hospitalmanagement.management;
 
 
-import com.hospital.hospitalmanagement.registration.RegistrationService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
