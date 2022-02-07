@@ -57,6 +57,13 @@ public class Doctor implements UserDetails {
         this.startingDepartmentDate = LocalDate.now();
     }
 
+    public Doctor(String firstName, String lastName, String email, String password) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.password = password;
+    }
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         SimpleGrantedAuthority authority =
