@@ -39,7 +39,7 @@ public class Doctor implements UserDetails {
     private String email;
     private String password;
     @Enumerated(EnumType.STRING)
-    private DoctorRole role;
+    private DoctorRole doctorRole;
     private boolean departmentChangeEligible;
     private LocalDate startingDepartmentDate;
     private Boolean locked = false;
