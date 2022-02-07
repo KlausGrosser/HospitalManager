@@ -53,6 +53,24 @@ public class DoctorService implements UserDetailsService {
 
     public String updateDoctor(Doctor doctor){
 
+
+
+        String encodedPassword = bCryptPasswordEncoder.encode(doctor.getPassword());
+        doctor.setPassword(encodedPassword);
+        doctorRepository.save(doctor);
+
+
+        String token =  UUID.randomUUID().toString();
+        ConfirmationToken confirmationToken = new ConfirmationToken(
+                token,
+                LocalDateTime.now(),
+                LocalDateTime.now().plusMinutes(15),
+                doctor
+        );
+        confirmationTokenService.saveConfirmationToken(confirmationToken);
+
+        return token;
+
     }
 
     public boolean findDoctorByEmail(String email){

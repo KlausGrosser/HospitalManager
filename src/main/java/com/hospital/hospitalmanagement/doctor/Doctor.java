@@ -1,5 +1,6 @@
 package com.hospital.hospitalmanagement.doctor;
 
+import com.hospital.hospitalmanagement.department.Department;
 import com.hospital.hospitalmanagement.department.DepartmentTypes;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -34,8 +35,9 @@ public class Doctor implements UserDetails {
     private long ID;
     private String firstName;
     private String lastName;
-    @Enumerated(EnumType.STRING)
-    private DepartmentTypes department;
+    @OneToOne
+    @JoinColumn(name = "department_id")
+    private Department department;
     private String email;
     private String password;
     @Enumerated(EnumType.STRING)
@@ -46,7 +48,7 @@ public class Doctor implements UserDetails {
     private Boolean enabled = false;
 
 
-    public Doctor(String firstName, String lastName, String email, String password, DoctorRole doctorRole, DepartmentTypes department) {
+    public Doctor(String firstName, String lastName, String email, String password, DoctorRole doctorRole, Department department) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
