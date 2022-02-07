@@ -15,12 +15,12 @@ public class DepartmentService {
             "department with name %s not found";
     private final DepartmentRepository departmentRepository;
 
-    public void enableDepartment(String departmentName) {
-        departmentRepository.enableDepartment(departmentName);
-    }
-
     public List<Department> getAllDepartments() {
         return departmentRepository.findAll();
+    }
+
+    public void addDoctorToDepartment(){
+
     }
 
     public void saveDepartment(Department department){

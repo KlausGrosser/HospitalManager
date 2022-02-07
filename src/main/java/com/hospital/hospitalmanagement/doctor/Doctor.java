@@ -1,7 +1,6 @@
 package com.hospital.hospitalmanagement.doctor;
 
 import com.hospital.hospitalmanagement.department.Department;
-import com.hospital.hospitalmanagement.department.DepartmentTypes;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

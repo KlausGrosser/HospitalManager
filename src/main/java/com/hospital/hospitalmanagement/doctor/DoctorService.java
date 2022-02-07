@@ -51,30 +51,21 @@ public class DoctorService implements UserDetailsService {
         return token;
     }
 
-    public String updateDoctor(Doctor doctor){
-
-
-
+    public void updateDoctor(Doctor doctor){
         String encodedPassword = bCryptPasswordEncoder.encode(doctor.getPassword());
         doctor.setPassword(encodedPassword);
         doctorRepository.save(doctor);
-
-
-        String token =  UUID.randomUUID().toString();
-        ConfirmationToken confirmationToken = new ConfirmationToken(
-                token,
-                LocalDateTime.now(),
-                LocalDateTime.now().plusMinutes(15),
-                doctor
-        );
-        confirmationTokenService.saveConfirmationToken(confirmationToken);
-
-        return token;
-
     }
 
-    public boolean findDoctorByEmail(String email){
-        return doctorRepository.findByEmail(email).isPresent();
+    public Doctor findDoctorByEmail(String email){
+        Optional<Doctor> x = doctorRepository.findByEmail(email);
+        Doctor doctor = null;
+        if(doctorRepository.findByEmail(email).isPresent()){
+            doctor = x.get();
+        }else {
+            throw new RuntimeException("Doctor not found for email: " + email);
+        }
+        return doctor;
     }
 
     public void enableDoctor(String email) {
@@ -90,5 +81,9 @@ public class DoctorService implements UserDetailsService {
                                 String.format(USER_NOT_FOUND_MSG, email)
                         )
         );
+    }
+
+    public Doctor getDoctorByID(long id) {
+        return doctorRepository.getById(id);
     }
 }
