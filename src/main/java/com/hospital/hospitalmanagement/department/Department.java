@@ -1,11 +1,13 @@
 package com.hospital.hospitalmanagement.department;
 
+
 import com.hospital.hospitalmanagement.doctor.Doctor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.persistence.Entity;
 import javax.persistence.*;
 import java.util.List;
 

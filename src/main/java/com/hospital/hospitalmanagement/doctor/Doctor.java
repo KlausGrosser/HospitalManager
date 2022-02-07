@@ -40,7 +40,7 @@ public class Doctor implements UserDetails {
     private String password;
     @Enumerated(EnumType.STRING)
     private DoctorRole doctorRole;
-    private boolean departmentChangeEligible;
+    private boolean departmentChangeEligible = false;
     private LocalDate startingDepartmentDate;
     private Boolean locked = false;
     private Boolean enabled = false;
@@ -53,6 +53,7 @@ public class Doctor implements UserDetails {
         this.password = password;
         this.doctorRole = doctorRole;
         this.department = department;
+        this.startingDepartmentDate = LocalDate.now();
     }
 
     @Override
