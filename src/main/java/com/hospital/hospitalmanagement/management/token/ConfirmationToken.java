@@ -1,4 +1,4 @@
-package com.hospital.hospitalmanagement.registration.token;
+package com.hospital.hospitalmanagement.management.token;
 
 import java.time.LocalDateTime;
 import javax.persistence.Column;

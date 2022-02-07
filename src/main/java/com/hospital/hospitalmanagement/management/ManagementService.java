@@ -1,4 +1,4 @@
-package com.hospital.hospitalmanagement.registration;
+package com.hospital.hospitalmanagement.management;
 
 import java.time.LocalDateTime;
 import javax.transaction.Transactional;
@@ -6,21 +6,21 @@ import javax.transaction.Transactional;
 import com.hospital.hospitalmanagement.doctor.Doctor;
 import com.hospital.hospitalmanagement.doctor.DoctorService;
 import com.hospital.hospitalmanagement.email.EmailSender;
-import com.hospital.hospitalmanagement.registration.token.ConfirmationToken;
-import com.hospital.hospitalmanagement.registration.token.ConfirmationTokenService;
+import com.hospital.hospitalmanagement.management.token.ConfirmationToken;
+import com.hospital.hospitalmanagement.management.token.ConfirmationTokenService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 @Service
 @AllArgsConstructor
-public class RegistrationService {
+public class ManagementService {
 
     private final DoctorService doctorService;
     private final ConfirmationTokenService confirmationTokenService;
     private final EmailValidator emailValidator;
     private final EmailSender emailSender;
 
-    public String register(RegistrationRequest request) {
+    public String register(ManagementRequest request) {
         //email should be validated
 
         if(!emailValidator
@@ -30,14 +30,16 @@ public class RegistrationService {
             );
         }
         //signing the user up and receiving the token back
-        String token = doctorService.signUpUser(new Doctor( request.getFirstName(),
-                        request.getLastName(),
-                        request.getEmail(),
-                        request.getPassword()
+        String token = doctorService.newDoctor(new Doctor(request.getFirstName(),
+                request.getLastName(),
+                request.getEmail(),
+                request.getPassword(),
+                request.getDoctorRole(),
+                request.getDepartmentTypes()
+
                 )
         );
 // create a confirmation link to be sent to the user email
-// http://localhost:8080/api/v1/registration/confirm?token=" + token
         String link = "http://localhost:8051/api/v1/registration/confirm?token=" + token;
         //Send Email
         emailSender.send(
@@ -67,9 +69,8 @@ public class RegistrationService {
         // set the confirmed time of the token to now
         confirmationTokenService.setConfirmedAt(token);
         // set the user that holds this token to enabled
-        doctorService.enableAppUser(
-                confirmationToken.getAppUser().getEmail()
-        );
+        doctorService.enableDoctor(
+                confirmationToken.getDoctor().getEmail());
         // return "confirmed"
         return "confirmed";
 
@@ -77,6 +78,16 @@ public class RegistrationService {
 
     private String buildEmail(String name, String link) {
         //TODO : build email here
-        return ""
+        return "";
+    }
+
+    public String update(ManagementRequest request) {
+        //if the email isn
+        if(doctorService.findDoctorByEmail(request.getEmail()) == null){
+            return register(request);
+        }
+
+
+
     }
 }
