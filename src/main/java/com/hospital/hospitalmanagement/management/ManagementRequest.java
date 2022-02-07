@@ -2,7 +2,6 @@ package com.hospital.hospitalmanagement.management;
 
 
 import com.hospital.hospitalmanagement.department.Department;
-import com.hospital.hospitalmanagement.department.DepartmentTypes;
 import com.hospital.hospitalmanagement.doctor.DoctorRole;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -19,5 +18,5 @@ public class ManagementRequest {
     private final String email;
     private final String password;
     private final DoctorRole doctorRole;
-    private final DepartmentTypes departmentTypes;
+    private final Department department;
 }
