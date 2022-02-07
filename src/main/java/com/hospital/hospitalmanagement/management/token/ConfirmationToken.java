@@ -44,7 +44,7 @@ public class ConfirmationToken {
     private LocalDateTime confirmedAt;
     @ManyToOne
     @JoinColumn(nullable = false,
-            name = "app_user_id"
+            name = "doctor_id"
     )
     private Doctor doctor;
 

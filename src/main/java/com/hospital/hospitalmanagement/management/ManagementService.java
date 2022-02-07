@@ -91,7 +91,12 @@ public class ManagementService {
         confirmationTokenService.setConfirmedAt(token);
         // set the user that holds this token to enabled
         doctorService.enableDoctor(
+<<<<<<< HEAD:src/main/java/com/hospital/hospitalmanagement/management/RegistrationService.java
+                confirmationToken.getDoctor().getEmail()
+        );
+=======
                 confirmationToken.getDoctor().getEmail());
+>>>>>>> 4f659d813d5538e07464e59cac6fa16600e5653b:src/main/java/com/hospital/hospitalmanagement/management/ManagementService.java
         // return "confirmed"
         return "confirmed";
 
