@@ -21,6 +21,4 @@ public interface DoctorRepository extends JpaRepository<Doctor, Long> {
                     "WHERE a.email = ?1"
     )
     int enableDoctor(String email);
-
-
 }
