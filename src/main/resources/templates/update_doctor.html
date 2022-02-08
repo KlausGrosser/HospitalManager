@@ -13,11 +13,11 @@
 		<hr>
 		<h2>Update Doctor</h2>
 
-		<form action="#" th:action="@{/saveDoctor}" th:object="${doctor}"
+		<form action="#" th:action="@{/doctor/update/}" th:object="${doctor}"
 			method="POST">
 			
 			<!-- Add hidden form field to handle update -->
-			<input type="hidden" th:field="*{id}" />
+			<input type="hidden" th:field="*{ID}" />
 			
 			<input type="text" th:field="*{firstName}" class="form-control mb-4 col-4">
 				
@@ -27,7 +27,12 @@
 
 			<input type="text" th:field="*{password}" class="form-control mb-4 col-4">
 
-			<input type="text" th:field="*{role}" class="form-control mb-4 col-4">
+			<!-- <input type="text" th:field="*{doctor.role}" class="form-control mb-4 col-4"> -->
+
+			<select th:field="*{doctorRole}">
+				<option th:each="p : ${listDoctorRoles}" th:value="${p}" th:text="${p}" />
+			</select>
+			<br/>
 
 			<input type="text" th:field="*{department}" class="form-control mb-4 col-4">
 				
