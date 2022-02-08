@@ -59,6 +59,7 @@ public class DoctorService implements UserDetailsService {
     public void updateDoctor(Doctor doctor){
         String encodedPassword = bCryptPasswordEncoder.encode(doctor.getPassword());
         doctor.setPassword(encodedPassword);
+        doctor.setEnabled(true);
         doctorRepository.save(doctor);
     }
 

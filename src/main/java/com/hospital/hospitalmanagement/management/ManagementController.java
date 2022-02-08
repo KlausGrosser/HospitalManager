@@ -34,10 +34,10 @@ public class ManagementController {
         return "login";
     }
 
-    @GetMapping(path = "/doctor/delete/{id}")
-    public String deleteDoctor(@PathVariable ( value = "id") Long id, Model model){
-
-    }
+//    @GetMapping(path = "/doctor/delete/{id}")
+//    public String deleteDoctor(@PathVariable ( value = "id") Long id, Model model){
+//
+//    }
 
     //register
     @PostMapping(path = "/registerNewDoc")
@@ -63,7 +63,7 @@ public class ManagementController {
     @PostMapping(path = "/doctor/update")
     public String update(@ModelAttribute Doctor doctor){
         managementService.updateDoctor(doctor);
-        return "doctor is updated!";
+        return "redirect:/doctor_list";
     }
 
     @GetMapping(path = "/confirm")

@@ -1,6 +1,7 @@
 package com.hospital.hospitalmanagement.management;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import javax.transaction.Transactional;
 
@@ -10,14 +11,11 @@ import com.hospital.hospitalmanagement.doctor.Doctor;
 import com.hospital.hospitalmanagement.doctor.DoctorRole;
 import com.hospital.hospitalmanagement.doctor.DoctorService;
 import com.hospital.hospitalmanagement.email.EmailSender;
-<<<<<<< HEAD
-=======
-//import com.hospital.hospitalmanagement.email.ThymeleafConfig;
->>>>>>> main
 import com.hospital.hospitalmanagement.management.token.ConfirmationToken;
 import com.hospital.hospitalmanagement.management.token.ConfirmationTokenService;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -29,6 +27,7 @@ public class ManagementService {
     private final EmailValidator emailValidator;
     private final EmailSender emailSender;
     private final DepartmentService departmentService;
+    private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
     public String register(ManagementRequest request) {
         //email should be validated
@@ -58,6 +57,9 @@ public class ManagementService {
     }
 
     public void updateDoctor(Doctor doctor) {
+        doctor.setDepartment(
+                departmentService
+                        .getDepartmentByName(doctor.getDepartmentName()));
         doctorService.updateDoctor(doctor);
     }
 
@@ -162,7 +164,11 @@ public class ManagementService {
         return doctorService.getDoctorByID(id);
     }
 
-    public List<Department> getDepartmentList() {
-        return departmentService.getDepartmentList();
+    public List<String> getDepartmentList() {
+        List<String> result = new ArrayList<>();
+        for(Department department: departmentService.getDepartmentList()){
+            result.add(department.getName());
+        }
+        return result;
     }
 }

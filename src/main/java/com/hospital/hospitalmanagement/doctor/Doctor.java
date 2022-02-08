@@ -1,6 +1,8 @@
 package com.hospital.hospitalmanagement.doctor;
 
 import com.hospital.hospitalmanagement.department.Department;
+import com.hospital.hospitalmanagement.department.DepartmentService;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -18,6 +20,8 @@ import java.util.Collections;
 @NoArgsConstructor
 @Entity
 public class Doctor implements UserDetails {
+
+
     @Id
     @SequenceGenerator(
             name = "user_sequence",
@@ -99,11 +103,4 @@ public class Doctor implements UserDetails {
     public boolean isEnabled() {
         return enabled;
     }
-
-    public void setDepartment(Department department) {
-        this.department = department;
-        this.departmentName = department.getName();
-    }
-
-
 }

@@ -28,10 +28,9 @@
 			<label>Email</label>
 			<input type="text" th:field="*{email}" class="form-control mb-4 col-4">
 
-			<label>Password</label>
-			<input type="text"  class="form-control mb-4 col-4">
+			<label>Password (please change this  to whatever, your old password or a new one)</label>
+			<input type="text" th:field="*{password}"  class="form-control mb-4 col-4">
 
-			<!-- <input type="text" th:field="*{doctor.role}" class="form-control mb-4 col-4"> -->
 			<label>Role</label>
 			<select th:field="*{doctorRole}" title="Select Department:">
 				<option th:each="p : ${listDoctorRoles}" th:value="${p}" th:text="${p}" />
@@ -39,8 +38,8 @@
 			<br/>
 
 			<label>Department</label>
-			<select th:field="*{department.getName()}" title="Select Department:">
-				<option th:each="p : ${listDoctorRoles}" th:value="${p}" th:text="${p}" />
+			<select th:field="*{departmentName}" title="Select Department:">
+				<option th:each="p : ${listDepartments}" th:value="${p}" th:text="${p}" />
 			</select>
 			<br/>
 				
