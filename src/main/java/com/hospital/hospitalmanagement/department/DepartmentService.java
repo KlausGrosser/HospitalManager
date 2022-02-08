@@ -59,4 +59,8 @@ public class DepartmentService {
     public void deleteDepartmentById (long id) {
         departmentRepository.deleteById(id);
     }
+
+    public List<Department> getDepartmentList() {
+        return departmentRepository.findAll();
+    }
 }

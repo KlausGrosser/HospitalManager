@@ -34,6 +34,11 @@ public class ManagementController {
         return "login";
     }
 
+    @GetMapping(path = "/doctor/delete/{id}")
+    public String deleteDoctor(@PathVariable ( value = "id") Long id, Model model){
+
+    }
+
     //register
     @PostMapping(path = "/registerNewDoc")
     public String register(@ModelAttribute Doctor request){
@@ -47,8 +52,9 @@ public class ManagementController {
     }
 
     @GetMapping(path = "/doctor/update/{id}")
-    public String updateForm(@PathVariable ( value = "id") long id, Model model){
+    public String updateForm(@PathVariable ( value = "id") Long id, Model model){
         Doctor doctor = managementService.getDoctorByID(id);
+        model.addAttribute("listDepartments", managementService.getDepartmentList());
         model.addAttribute("listDoctorRoles", DoctorRole.values());
         model.addAttribute("doctor", doctor);
         return "update_doctor";

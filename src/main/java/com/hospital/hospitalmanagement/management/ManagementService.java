@@ -1,9 +1,11 @@
 package com.hospital.hospitalmanagement.management;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import javax.transaction.Transactional;
 
 import com.hospital.hospitalmanagement.department.Department;
+import com.hospital.hospitalmanagement.department.DepartmentService;
 import com.hospital.hospitalmanagement.doctor.Doctor;
 import com.hospital.hospitalmanagement.doctor.DoctorRole;
 import com.hospital.hospitalmanagement.doctor.DoctorService;
@@ -13,7 +15,6 @@ import com.hospital.hospitalmanagement.management.token.ConfirmationTokenService
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
-import org.springframework.ui.Model;
 
 @Service
 @AllArgsConstructor
@@ -23,6 +24,7 @@ public class ManagementService {
     private final ConfirmationTokenService confirmationTokenService;
     private final EmailValidator emailValidator;
     private final EmailSender emailSender;
+    private final DepartmentService departmentService;
 
     public String register(ManagementRequest request) {
         //email should be validated
@@ -154,5 +156,9 @@ public class ManagementService {
 
     public Doctor getDoctorByID(long id) {
         return doctorService.getDoctorByID(id);
+    }
+
+    public List<Department> getDepartmentList() {
+        return departmentService.getDepartmentList();
     }
 }
