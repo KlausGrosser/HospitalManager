@@ -18,23 +18,31 @@
 			
 			<!-- Add hidden form field to handle update -->
 			<input type="hidden" th:field="*{ID}" />
-			
+
+			<label>First Name</label>
 			<input type="text" th:field="*{firstName}" class="form-control mb-4 col-4">
-				
+
+			<label>Last Name</label>
 			<input type="text" th:field="*{lastName}" class="form-control mb-4 col-4">
-				
+
+			<label>Email</label>
 			<input type="text" th:field="*{email}" class="form-control mb-4 col-4">
 
-			<input type="text" th:field="*{password}" class="form-control mb-4 col-4">
+			<label>Password</label>
+			<input type="text"  class="form-control mb-4 col-4">
 
 			<!-- <input type="text" th:field="*{doctor.role}" class="form-control mb-4 col-4"> -->
-
-			<select th:field="*{doctorRole}">
+			<label>Role</label>
+			<select th:field="*{doctorRole}" title="Select Department:">
 				<option th:each="p : ${listDoctorRoles}" th:value="${p}" th:text="${p}" />
 			</select>
 			<br/>
 
-			<input type="text" th:field="*{department.getName()}" class="form-control mb-4 col-4">
+			<label>Department</label>
+			<select th:field="*{department.getName()}" title="Select Department:">
+				<option th:each="p : ${listDoctorRoles}" th:value="${p}" th:text="${p}" />
+			</select>
+			<br/>
 				
 				<button type="submit" class="btn btn-info col-2"> Update Employee</button>
 		</form>

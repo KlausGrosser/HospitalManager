@@ -10,6 +10,10 @@ import com.hospital.hospitalmanagement.doctor.Doctor;
 import com.hospital.hospitalmanagement.doctor.DoctorRole;
 import com.hospital.hospitalmanagement.doctor.DoctorService;
 import com.hospital.hospitalmanagement.email.EmailSender;
+<<<<<<< HEAD
+=======
+//import com.hospital.hospitalmanagement.email.ThymeleafConfig;
+>>>>>>> main
 import com.hospital.hospitalmanagement.management.token.ConfirmationToken;
 import com.hospital.hospitalmanagement.management.token.ConfirmationTokenService;
 import lombok.AllArgsConstructor;
@@ -39,7 +43,7 @@ public class ManagementService {
                 request.getLastName(),
                 request.getEmail(),
                 request.getPassword(),
-                DoctorRole.MEDICAL_STUDENT,
+                DoctorRole.ROLE_PENDING,
                 new Department("Pending Assignment")
                 )
         );
