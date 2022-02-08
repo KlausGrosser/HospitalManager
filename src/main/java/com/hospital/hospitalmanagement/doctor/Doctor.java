@@ -34,6 +34,7 @@ public class Doctor implements UserDetails {
     private String lastName;
     @ManyToOne(cascade = CascadeType.ALL)
     private Department department;
+    private String departmentName;
     private String email;
     private String password;
     @Enumerated(EnumType.STRING)
@@ -51,6 +52,7 @@ public class Doctor implements UserDetails {
         this.password = password;
         this.doctorRole = doctorRole;
         this.department = department;
+        this.departmentName = department.getName();
         this.startingDepartmentDate = LocalDate.now();
     }
 
@@ -97,4 +99,11 @@ public class Doctor implements UserDetails {
     public boolean isEnabled() {
         return enabled;
     }
+
+    public void setDepartment(Department department) {
+        this.department = department;
+        this.departmentName = department.getName();
+    }
+
+
 }
