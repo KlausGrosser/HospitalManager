@@ -1,7 +1,6 @@
 package com.hospital.hospitalmanagement.doctor;
 
 import com.hospital.hospitalmanagement.department.Department;
-import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -17,7 +16,6 @@ import java.util.Collections;
 @Getter
 @Setter
 @NoArgsConstructor
-@EqualsAndHashCode
 @Entity
 public class Doctor implements UserDetails {
     @Id
@@ -31,10 +29,10 @@ public class Doctor implements UserDetails {
             generator = "user_sequence"
     )
 
-    private long ID;
+    private Long ID;
     private String firstName;
     private String lastName;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     private Department department;
     private String email;
     private String password;

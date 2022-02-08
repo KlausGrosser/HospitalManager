@@ -3,10 +3,7 @@ package com.hospital.hospitalmanagement.management;
 
 import com.hospital.hospitalmanagement.department.Department;
 import com.hospital.hospitalmanagement.doctor.DoctorRole;
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.ToString;
+import lombok.*;
 
 @Getter
 @AllArgsConstructor
@@ -17,6 +14,4 @@ public class ManagementRequest {
     private final String lastName;
     private final String email;
     private final String password;
-    private final DoctorRole doctorRole;
-    private final Department department;
 }
