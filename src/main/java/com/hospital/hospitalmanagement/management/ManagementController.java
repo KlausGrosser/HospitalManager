@@ -2,41 +2,39 @@ package com.hospital.hospitalmanagement.management;
 
 
 import com.hospital.hospitalmanagement.doctor.Doctor;
+import com.hospital.hospitalmanagement.doctor.DoctorService;
+import com.hospital.hospitalmanagement.management.token.ConfirmationToken;
+import com.hospital.hospitalmanagement.management.token.ConfirmationTokenService;
 import lombok.AllArgsConstructor;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
+import java.util.UUID;
+
 @RestController
-@RequestMapping(path ="api/v1/" )
+@RequestMapping
 @AllArgsConstructor
 public class ManagementController {
 
     private ManagementService managementService;
 
-
     //register
-    @PostMapping(path = "doctor/register")
+    @PostMapping(path = "registerNewDoc")
     public String register(@RequestBody ManagementRequest request){
         return managementService.register(request);
     }
 
-    /*update
-        we need to send an email with a token so when they click on it it returns them to the update form
+    @GetMapping(path = "doctor/update/{id}")
+    public String updateForm(@PathVariable ( value = "id") long id, Model model){
+        managementService.sendUpdateEmail(id, model);
+        return "update_email_sent";
+    }
 
-        - email
-        - token sent
-     */
     @PostMapping(path = "doctor/update")
-    public String update (@RequestBody ManagementRequest request, Model model){
-        Doctor doctor = new Doctor(
-                request.getFirstName(),
-                request.getLastName(),
-                request.getEmail(),
-                request.getPassword(),
-                request.getDoctorRole(),
-                request.getDepartment());
-        model.addAttribute("doctor", doctor);
-        return managementService.updateDoctor(request);
+    public String update(@RequestBody Doctor doctor){
+        managementService.updateDoctor(doctor);
+        return "doctor is updated!";
     }
 
     @GetMapping(path = "confirm")
@@ -44,9 +42,9 @@ public class ManagementController {
         return managementService.confirmToken(token);
     }
 
-    @GetMapping
+    @GetMapping(path = "registration")
     public String register(){
-        return "register_page";
+        return "registration_page.html";
     }
 
 

@@ -34,13 +34,12 @@ public class Doctor implements UserDetails {
     private long ID;
     private String firstName;
     private String lastName;
-    @OneToOne
-    @JoinColumn(name = "department_id")
+    @ManyToOne
     private Department department;
     private String email;
     private String password;
     @Enumerated(EnumType.STRING)
-    private DoctorRole role;
+    private DoctorRole doctorRole;
     private boolean departmentChangeEligible = false;
     private LocalDate startingDepartmentDate;
     private Boolean locked = false;

@@ -29,7 +29,6 @@ public class EmailService
                     new MimeMessageHelper(mimeMessage, "utf-8");
             helper.setText(email, true);
             helper.setTo(to);
-            helper.setSubject("Confirm your email");
             helper.setFrom("awilkes2589@gmail.com");
             mailSender.send(mimeMessage);
 

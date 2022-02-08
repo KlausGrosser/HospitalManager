@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="ISO-8859-1">
 <title>Registration</title>
@@ -36,12 +36,12 @@
 				<!-- success message -->
 				<div th:if="${param.success}">
 					<div class="alert alert-info">You've successfully registered
-						to our awesome app!</div>
+						as a new doctor in the hospital!</div>
 				</div>
 
 				<h1>Registration</h1>
 
-				<form th:action="@{/registration}" method="post" th:object="${user}">
+				<form th:action="@{/api/v1/registerNewDoc}" method="post" th:object="${doctor}">
 					<div class="form-group">
 						<label class="control-label" for="firstName"> First Name </label>
 						<input id="firstName" class="form-control" th:field="*{firstName}"
