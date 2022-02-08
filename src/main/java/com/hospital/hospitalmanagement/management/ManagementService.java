@@ -30,7 +30,7 @@ public class ManagementService {
     private final DepartmentService departmentService;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
-    public String register(ManagementRequest request) {
+    public void register(ManagementRequest request) {
         //email should be validated
         if(!emailValidator
                 .test(request.getEmail())){
@@ -54,7 +54,6 @@ public class ManagementService {
                 request.getEmail(),
                 buildRegisterEmail(request.getFirstName(),link)
         );
-        return "register_check_email";
     }
 
     public void updateDoctor(Doctor doctor) {

@@ -23,21 +23,22 @@
                     class="icon-bar"></span> <span class="icon-bar"></span> <span
                     class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#" th:href="@{/}">Hospital Management System</a>
+            <a class="navbar-brand" href="#" th:href="@{/}">Home</a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li sec:authorize="isAuthenticated()"><a th:href="@{/logout}">Log Out</a></li>
             </ul>
 
         </div>
     </div>
 </nav>
-<br>
-<br>
-<br>
-<br>
-<br>
-<div>Check your email for a confirmation link!</div>
+<div class="container">
+    <hr>
+    <br>
+    <br>
+    <h1>Welcome to the Hospital Management System</h1>
+    <h2>Please check your email to verify your account!</h2>
+    <hr>
+</div>
 </body>
 </html>

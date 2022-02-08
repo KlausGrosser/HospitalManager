@@ -39,7 +39,6 @@ public class Doctor implements UserDetails {
     @Enumerated(EnumType.STRING)
     private DoctorRole doctorRole;
     private boolean departmentChangeEligible = false;
-    private LocalDate startingDepartmentDate;
     private Boolean locked = false;
     private Boolean enabled = false;
 
@@ -51,7 +50,6 @@ public class Doctor implements UserDetails {
         this.password = password;
         this.doctorRole = doctorRole;
         this.departmentName = departmentName;
-        this.startingDepartmentDate = LocalDate.now();
     }
 
     public Doctor(String firstName, String lastName, String email, String password) {
@@ -96,5 +94,11 @@ public class Doctor implements UserDetails {
     @Override
     public boolean isEnabled() {
         return enabled;
+    }
+
+    public void setPassword(String password) {
+        if (password != null){
+            this.password = password;
+        }
     }
 }
