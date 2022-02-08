@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="ISO-8859-1">
+	<meta charset="ISO-8859-1">
 <title>Registration</title>
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
@@ -21,7 +21,7 @@
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="#" th:href="@{/}">Employee Management System</a>
+				<a class="navbar-brand" href="#" th:href="@{/}">Hospital Management System</a>
 			</div>
 		</div>
 	</nav>
@@ -41,7 +41,7 @@
 
 				<h1>Registration</h1>
 
-				<form th:action="@{/api/v1/registerNewDoc}" method="post" th:object="${doctor}">
+				<form action="#" th:action="@{/registerNewDoc}" method="POST" th:object="${doctor}">
 					<div class="form-group">
 						<label class="control-label" for="firstName"> First Name </label>
 						<input id="firstName" class="form-control" th:field="*{firstName}"
