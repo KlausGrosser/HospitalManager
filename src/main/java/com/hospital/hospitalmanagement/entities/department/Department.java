@@ -1,7 +1,7 @@
-package com.hospital.hospitalmanagement.department;
+package com.hospital.hospitalmanagement.entities.department;
 
 
-import com.hospital.hospitalmanagement.doctor.Doctor;
+import com.hospital.hospitalmanagement.entities.doctor.Doctor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -9,6 +9,7 @@ import lombok.Setter;
 import javax.persistence.Entity;
 import javax.persistence.*;
 import java.util.List;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -27,8 +28,10 @@ public class Department {
     )
     private Long id;
     private String name;
-    @OneToMany(cascade = {CascadeType.ALL})
-    private List<Doctor> activeDoctorsList;
+    @Transient
+    private Set<Doctor> doctors;
+    @Transient
+    private DepartmentService departmentService;
 
     public Department(String name) {
         this.name = name;
@@ -36,5 +39,9 @@ public class Department {
 
     public Long getID() {
         return this.id;
+    }
+
+    public Set<Doctor> getDoctors(){
+        return departmentService.getDoctorsByDepartment(this);
     }
 }

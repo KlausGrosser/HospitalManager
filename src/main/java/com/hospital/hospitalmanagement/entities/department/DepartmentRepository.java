@@ -1,4 +1,4 @@
-package com.hospital.hospitalmanagement.department;
+package com.hospital.hospitalmanagement.entities.department;
 
 
 import org.springframework.data.jpa.repository.JpaRepository;

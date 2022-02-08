@@ -1,8 +1,5 @@
-package com.hospital.hospitalmanagement.doctor;
+package com.hospital.hospitalmanagement.entities.doctor;
 
-import com.hospital.hospitalmanagement.department.Department;
-import com.hospital.hospitalmanagement.department.DepartmentService;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -36,8 +33,6 @@ public class Doctor implements UserDetails {
     private Long ID;
     private String firstName;
     private String lastName;
-    @ManyToOne(cascade = CascadeType.ALL)
-    private Department department;
     private String departmentName;
     private String email;
     private String password;
@@ -49,14 +44,13 @@ public class Doctor implements UserDetails {
     private Boolean enabled = false;
 
 
-    public Doctor(String firstName, String lastName, String email, String password, DoctorRole doctorRole, Department department) {
+    public Doctor(String firstName, String lastName, String email, String password, DoctorRole doctorRole, String departmentName) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.password = password;
         this.doctorRole = doctorRole;
-        this.department = department;
-        this.departmentName = department.getName();
+        this.departmentName = departmentName;
         this.startingDepartmentDate = LocalDate.now();
     }
 

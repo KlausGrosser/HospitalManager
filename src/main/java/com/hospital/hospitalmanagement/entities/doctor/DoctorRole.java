@@ -1,4 +1,4 @@
-package com.hospital.hospitalmanagement.doctor;
+package com.hospital.hospitalmanagement.entities.doctor;
 
 public enum DoctorRole {
     ROLE_PENDING,

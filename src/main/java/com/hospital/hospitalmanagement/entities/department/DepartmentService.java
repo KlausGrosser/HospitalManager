@@ -1,11 +1,18 @@
-package com.hospital.hospitalmanagement.department;
+package com.hospital.hospitalmanagement.entities.department;
 
 
+import com.hospital.hospitalmanagement.entities.doctor.Doctor;
+import com.hospital.hospitalmanagement.entities.doctor.DoctorService;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Service
 @AllArgsConstructor
@@ -14,6 +21,7 @@ public class DepartmentService {
     private final static String DEPARTMENT_NOT_FOUND_MSG =
             "department with name %s not found";
     private final DepartmentRepository departmentRepository;
+    private final DoctorService doctorService;
 
     public List<Department> getAllDepartments() {
         return departmentRepository.findAll();
@@ -21,6 +29,10 @@ public class DepartmentService {
 
     public void addDoctorToDepartment(){
 
+    }
+
+    public Set<Doctor> getDoctorsByDepartment(Department department){
+        return doctorService.getDoctorsByDepartment(department.getName());
     }
 
     public void saveDepartment(Department department){
@@ -62,5 +74,13 @@ public class DepartmentService {
 
     public List<Department> getDepartmentList() {
         return departmentRepository.findAll();
+    }
+
+    public Page<Department> findPaginated(int pageNo, int pageSize, String sortField, String sortDirection) {
+        Sort sort = sortDirection.equalsIgnoreCase(Sort.Direction.ASC.name()) ? Sort.by(sortField).ascending() :
+                Sort.by(sortField).descending();
+
+        Pageable pageable = PageRequest.of(pageNo - 1, pageSize, sort);
+        return departmentRepository.findAll(pageable);
     }
 }

@@ -1,6 +1,6 @@
 package com.hospital.hospitalmanagement.security.config;
 
-import com.hospital.hospitalmanagement.doctor.DoctorService;
+import com.hospital.hospitalmanagement.entities.doctor.DoctorService;
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
