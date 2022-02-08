@@ -2,6 +2,7 @@ package com.hospital.hospitalmanagement.management;
 
 
 import com.hospital.hospitalmanagement.doctor.Doctor;
+import com.hospital.hospitalmanagement.doctor.DoctorRole;
 import com.hospital.hospitalmanagement.doctor.DoctorService;
 import com.hospital.hospitalmanagement.management.token.ConfirmationToken;
 import com.hospital.hospitalmanagement.management.token.ConfirmationTokenService;
@@ -47,12 +48,14 @@ public class ManagementController {
 
     @GetMapping(path = "/doctor/update/{id}")
     public String updateForm(@PathVariable ( value = "id") long id, Model model){
-        managementService.sendUpdateEmail(id, model);
-        return "update_email_sent";
+        Doctor doctor = managementService.getDoctorByID(id);
+        model.addAttribute("listDoctorRoles", DoctorRole.values());
+        model.addAttribute("doctor", doctor);
+        return "update_doctor";
     }
 
     @PostMapping(path = "/doctor/update")
-    public String update(@RequestBody Doctor doctor){
+    public String update(@ModelAttribute Doctor doctor){
         managementService.updateDoctor(doctor);
         return "doctor is updated!";
     }

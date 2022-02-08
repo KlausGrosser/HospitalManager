@@ -9,12 +9,15 @@ import com.hospital.hospitalmanagement.doctor.Doctor;
 import com.hospital.hospitalmanagement.doctor.DoctorRole;
 import com.hospital.hospitalmanagement.doctor.DoctorService;
 import com.hospital.hospitalmanagement.email.EmailSender;
+//import com.hospital.hospitalmanagement.email.ThymeleafConfig;
 import com.hospital.hospitalmanagement.management.token.ConfirmationToken;
 import com.hospital.hospitalmanagement.management.token.ConfirmationTokenService;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
+import org.thymeleaf.context.Context;
+import org.thymeleaf.spring5.SpringTemplateEngine;
 
 @Service
 @AllArgsConstructor
@@ -38,7 +41,7 @@ public class ManagementService {
                 request.getLastName(),
                 request.getEmail(),
                 request.getPassword(),
-                DoctorRole.MEDICAL_STUDENT,
+                DoctorRole.ROLE_PENDING,
                 new Department("Pending Assignment")
                 )
         );
@@ -150,13 +153,11 @@ public class ManagementService {
     }
 
 
-    public void sendUpdateEmail(long id, Model model) {
-        Doctor doctor = doctorService.getDoctorByID(id);
-        model.addAttribute("doctor", doctor);
-        emailSender.send(doctor.getEmail(), "update_doc");
-    }
-
     public Page<Doctor> findPaginated(int pageNo, int pageSize, String sortField, String sortDir) {
         return doctorService.findPaginated(pageNo, pageSize, sortField, sortDir);
+    }
+
+    public Doctor getDoctorByID(long id) {
+        return doctorService.getDoctorByID(id);
     }
 }
