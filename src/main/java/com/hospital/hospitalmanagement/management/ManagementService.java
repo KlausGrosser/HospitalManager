@@ -153,7 +153,7 @@ public class ManagementService {
     public void sendUpdateEmail(long id, Model model) {
         Doctor doctor = doctorService.getDoctorByID(id);
         model.addAttribute("doctor", doctor);
-        emailSender.send(doctor.getFirstName(), "update_doc");
+        emailSender.send(doctor.getEmail(), "update_doc");
     }
 
     public Page<Doctor> findPaginated(int pageNo, int pageSize, String sortField, String sortDir) {
