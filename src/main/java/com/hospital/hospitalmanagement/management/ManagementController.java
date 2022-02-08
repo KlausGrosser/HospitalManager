@@ -13,14 +13,14 @@ import java.time.LocalDateTime;
 import java.util.UUID;
 
 @RestController
-@RequestMapping(path ="api/v1/" )
+@RequestMapping
 @AllArgsConstructor
 public class ManagementController {
 
     private ManagementService managementService;
 
     //register
-    @PostMapping(path = "doctor/register")
+    @PostMapping(path = "registerNewDoc")
     public String register(@RequestBody ManagementRequest request){
         return managementService.register(request);
     }
@@ -42,9 +42,9 @@ public class ManagementController {
         return managementService.confirmToken(token);
     }
 
-    @GetMapping
+    @GetMapping(path = "registration")
     public String register(){
-        return "register_page";
+        return "registration_page.html";
     }
 
 

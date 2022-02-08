@@ -34,7 +34,7 @@ public class Doctor implements UserDetails {
     private long ID;
     private String firstName;
     private String lastName;
-    @JoinColumn(name = "department_id")
+    @ManyToOne
     private Department department;
     private String email;
     private String password;
