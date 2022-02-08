@@ -2,9 +2,31 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Create New Department</title>
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+          crossorigin="anonymous">
+</head>
 </head>
 <body>
+<div class="container">
+    <h1>Hospital Management System</h1>
+    <hr>
+    <h2>Create New Department</h2>
 
+    <form action="#" th:action="@{/department/new}" th:object="${department}"
+          method="POST">
+
+        <label>Name of Department</label>
+        <input type="text" th:field="*{name}" class="form-control mb-4 col-4">
+
+        <button type="submit" class="btn btn-info col-2"> Create New Department</button>
+    </form>
+
+    <hr>
+
+    <a th:href = "@{/departments_list}"> Back to Department List</a>
+</div>
 </body>
 </html>

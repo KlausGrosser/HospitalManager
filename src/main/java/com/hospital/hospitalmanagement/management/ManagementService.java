@@ -1,23 +1,23 @@
 package com.hospital.hospitalmanagement.management;
 
 import java.time.LocalDateTime;
-import java.util.UUID;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
 import javax.transaction.Transactional;
 
-import com.hospital.hospitalmanagement.department.Department;
-import com.hospital.hospitalmanagement.doctor.Doctor;
-import com.hospital.hospitalmanagement.doctor.DoctorRole;
-import com.hospital.hospitalmanagement.doctor.DoctorService;
+import com.hospital.hospitalmanagement.entities.department.Department;
+import com.hospital.hospitalmanagement.entities.department.DepartmentService;
+import com.hospital.hospitalmanagement.entities.doctor.Doctor;
+import com.hospital.hospitalmanagement.entities.doctor.DoctorRole;
+import com.hospital.hospitalmanagement.entities.doctor.DoctorService;
 import com.hospital.hospitalmanagement.email.EmailSender;
-//import com.hospital.hospitalmanagement.email.ThymeleafConfig;
 import com.hospital.hospitalmanagement.management.token.ConfirmationToken;
 import com.hospital.hospitalmanagement.management.token.ConfirmationTokenService;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.ui.Model;
-import org.thymeleaf.context.Context;
-import org.thymeleaf.spring5.SpringTemplateEngine;
 
 @Service
 @AllArgsConstructor
@@ -27,6 +27,8 @@ public class ManagementService {
     private final ConfirmationTokenService confirmationTokenService;
     private final EmailValidator emailValidator;
     private final EmailSender emailSender;
+    private final DepartmentService departmentService;
+    private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
     public String register(ManagementRequest request) {
         //email should be validated
@@ -42,7 +44,7 @@ public class ManagementService {
                 request.getEmail(),
                 request.getPassword(),
                 DoctorRole.ROLE_PENDING,
-                new Department("Pending Assignment")
+                "Pending Assignment"
                 )
         );
 // create a confirmation link to be sent to the user email
@@ -152,12 +154,39 @@ public class ManagementService {
                 "</div></div>";
     }
 
-
     public Page<Doctor> findPaginated(int pageNo, int pageSize, String sortField, String sortDir) {
         return doctorService.findPaginated(pageNo, pageSize, sortField, sortDir);
     }
 
     public Doctor getDoctorByID(long id) {
         return doctorService.getDoctorByID(id);
+    }
+
+    public List<String> getDepartmentList() {
+        List<String> result = new ArrayList<>();
+        for(Department department: departmentService.getDepartmentList()){
+            result.add(department.getName());
+        }
+        return result;
+    }
+
+    public void deleteDoctorById(Long id) {
+        doctorService.deleteDoctorByID(id);
+    }
+
+    public Page<Department> findPaginatedDepartment(int pageNo, int pageSize, String sortField, String sortDir) {
+        return departmentService.findPaginated(pageNo, pageSize, sortField, sortDir);
+    }
+
+    public void newDepartment(Department department) {
+        departmentService.saveDepartment(department);
+    }
+
+    public void deleteDepartmentByID(Long id){
+        departmentService.deleteDepartmentById(id);
+    }
+
+    public Set<Doctor> getDoctorsByDepartment(Long id) {
+        return doctorService.getDoctorsByDepartment(departmentService.getDepartmentById(id).getName());
     }
 }

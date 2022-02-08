@@ -10,7 +10,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 
-import com.hospital.hospitalmanagement.doctor.Doctor;
+import com.hospital.hospitalmanagement.entities.doctor.Doctor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;

@@ -1,8 +1,6 @@
 package com.hospital.hospitalmanagement.management;
 
 
-import com.hospital.hospitalmanagement.department.Department;
-import com.hospital.hospitalmanagement.doctor.DoctorRole;
 import lombok.*;
 
 @Getter

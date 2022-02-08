@@ -1,4 +1,4 @@
-package com.hospital.hospitalmanagement.doctor;
+package com.hospital.hospitalmanagement.entities.doctor;
 
 import com.hospital.hospitalmanagement.management.token.ConfirmationToken;
 import com.hospital.hospitalmanagement.management.token.ConfirmationTokenService;
@@ -15,7 +15,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.HashSet;
 import java.util.Optional;
+import java.util.Set;
 import java.util.UUID;
 
 @Service
@@ -59,6 +61,7 @@ public class DoctorService implements UserDetailsService {
     public void updateDoctor(Doctor doctor){
         String encodedPassword = bCryptPasswordEncoder.encode(doctor.getPassword());
         doctor.setPassword(encodedPassword);
+        doctor.setEnabled(true);
         doctorRepository.save(doctor);
     }
 
@@ -98,5 +101,19 @@ public class DoctorService implements UserDetailsService {
 
         Pageable pageable = PageRequest.of(pageNo - 1, pageSize, sort);
         return doctorRepository.findAll(pageable);
+    }
+
+    public void deleteDoctorByID(Long id) {
+        doctorRepository.deleteById(id);
+    }
+
+    public Set<Doctor> getDoctorsByDepartment(String departmentName) {
+        Set<Doctor> result = new HashSet<>();
+        for(Doctor doctor : doctorRepository.findAll()){
+            if(doctor.getDepartmentName().equals(departmentName)){
+                result.add(doctor);
+            }
+        }
+        return result;
     }
 }
