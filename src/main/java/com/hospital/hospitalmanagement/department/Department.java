@@ -2,11 +2,9 @@ package com.hospital.hospitalmanagement.department;
 
 
 import com.hospital.hospitalmanagement.doctor.Doctor;
-import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
 
 import javax.persistence.Entity;
 import javax.persistence.*;
@@ -15,7 +13,6 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
-@EqualsAndHashCode
 @Entity
 public class Department {
     @Id
@@ -30,7 +27,7 @@ public class Department {
     )
     private Long id;
     private String name;
-    @OneToMany
+    @OneToMany(cascade = {CascadeType.ALL})
     private List<Doctor> activeDoctorsList;
 
     public Department(String name) {
