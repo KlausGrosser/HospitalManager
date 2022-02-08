@@ -74,7 +74,7 @@
             <td th:text="${doctor.lastName}"></td>
             <td th:text="${doctor.email}"></td>
             <td th:text="${doctor.doctorRole}"></td>
-            <td th:text="${doctor.departmentName}"></td>
+
             <td> <a th:href="@{/doctor/update/{id}(id=${doctor.ID})}" class="btn btn-primary">Update</a>
                 <a th:href="@{/deleteDoctor/{id}(id=${doctor.ID})}" class="btn btn-danger">Delete</a>
             </td>
