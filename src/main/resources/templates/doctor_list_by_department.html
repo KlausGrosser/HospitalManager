@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="ISO-8859-1">
-  <title>Hospital Management System</title>
+  <title>Doctors by department</title>
 
   <link rel="stylesheet"
         href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
@@ -23,10 +23,12 @@
               class="icon-bar"></span> <span class="icon-bar"></span> <span
               class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#" th:href="@{/}">Doctor Management System</a>
+      <a class="navbar-brand" href="#" th:href="@{/}">Home</a>
     </div>
     <div id="navbar" class="collapse navbar-collapse">
       <ul class="nav navbar-nav">
+        <li sec:authorize="isAuthenticated()"><a th:href="@{/doctor_list}">Doctors List</a></li>
+        <li sec:authorize="isAuthenticated()"><a th:href="@{/departments_list}">Departments List</a></li>
         <li sec:authorize="isAuthenticated()"><a th:href="@{/logout}">Log Out</a></li>
       </ul>
 
@@ -72,9 +74,13 @@
       <td th:text="${doctor.email}"></td>
       <td th:text="${doctor.doctorRole}"></td>
       <td th:text="${doctor.departmentName}"></td>
+      <td> <a th:href="@{/doctor/update/{id}(id=${doctor.ID})}" class="btn btn-primary">Update</a>
+        <a th:href="@{doctor/delete/{id}(id=${doctor.ID})}" class="btn btn-danger">Delete</a>
+      </td>
     </tr>
     </tbody>
   </table>
+  <a th:href = "@{/departments_list}"> Back to Department List</a>
 </div>
 </body>
 </html>
