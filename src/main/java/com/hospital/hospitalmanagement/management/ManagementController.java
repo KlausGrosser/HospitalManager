@@ -129,14 +129,6 @@ public class ManagementController {
         return "redirect:/doctor_list";
     }
 
-    @PostMapping(path = "/department/updateDoc")
-    public String updateInsideDepartment(@ModelAttribute Doctor doctor, HttpServletRequest request){
-        managementService.updateDoctor(doctor);
-        String referer = request.getHeader("Referer");
-        return "redirect:"+ referer;
-
-    }
-
     @GetMapping(path = "/confirm")
     public String confirm(@RequestParam("token") String token){
         managementService.confirmToken(token);
