@@ -32,12 +32,15 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-6 col-md-offset-3">
-
+				<div th:if="${param.error}">
+					<div class="alert alert-danger">Email already taken!</div>
+				</div>
 				<!-- success message -->
 				<div th:if="${param.success}">
 					<div class="alert alert-info">You've successfully registered
 						as a new doctor in the hospital!</div>
 				</div>
+
 
 				<h1>Registration</h1>
 

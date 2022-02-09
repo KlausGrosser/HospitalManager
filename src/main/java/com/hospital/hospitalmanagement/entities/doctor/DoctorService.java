@@ -36,7 +36,6 @@ public class DoctorService implements UserDetailsService {
                 .findByEmail(doctor.getEmail())
                 .isPresent();
         if(userExists){
-
             throw new IllegalStateException("email is taken");
         }
 
