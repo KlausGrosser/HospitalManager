@@ -47,7 +47,7 @@ public class ManagementService {
                 "Pending Assignment"
                 )
         );
-// create a confirmation link to be sent to the user email
+        // create a confirmation link to be sent to the user email
         String link = "http://localhost:8089/confirm?token=" + token;
         //Send Email
         emailSender.send(
